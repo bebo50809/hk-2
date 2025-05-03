@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Simple Iframe Proxy</title>
+  <title>Simple Iframe Browser</title>
   <style>
     body { font-family: sans-serif; padding: 1rem; }
     input[type="text"] { width: 80%; padding: 0.5rem; }
@@ -11,21 +11,20 @@
   </style>
 </head>
 <body>
-  <h2>Mini Web Browser</h2>
-  <input type="text" id="urlInput" placeholder="Enter URL (e.g. https://example.com)" />
-  <button onclick="loadURL()">Go</button>
+  <h2>Embed a Website</h2>
+  <input type="text" id="urlInput" placeholder="https://example.com" />
+  <button onclick="loadIframe()">Go</button>
 
-  <iframe id="webFrame" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+  <iframe id="webFrame"></iframe>
 
   <script>
-    function loadURL() {
-      const input = document.getElementById('urlInput').value;
-      const iframe = document.getElementById('webFrame');
-      if (!input.startsWith("http")) {
-        alert("Please enter a full URL with http or https.");
+    function loadIframe() {
+      const url = document.getElementById('urlInput').value;
+      if (!url.startsWith('http')) {
+        alert('Enter a full URL starting with http or https.');
         return;
       }
-      iframe.src = input;
+      document.getElementById('webFrame').src = url;
     }
   </script>
 </body>
