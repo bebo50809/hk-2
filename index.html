@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy Site</title>
+</head>
+<body>
+    <h1>Access Blocked Site via Proxy</h1>
+    <p>This page will allow you to access a blocked site via an iframe.</p>
+    <form id="url-form">
+        <label for="url">Enter URL to Access:</label>
+        <input type="text" id="url" placeholder="Enter the URL (e.g., https://example.com)">
+        <button type="submit">Go</button>
+    </form>
+    <div id="proxy-frame-container" style="display: none;">
+        <h2>Loaded Page:</h2>
+        <iframe id="proxy-frame" style="width: 100%; height: 800px;" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        const form = document.getElementById('url-form');
+        const iframe = document.getElementById('proxy-frame');
+        const frameContainer = document.getElementById('proxy-frame-container');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const url = document.getElementById('url').value;
+            if (url) {
+                iframe.src = 'https://cors-anywhere.herokuapp.com/' + url;
+                frameContainer.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
